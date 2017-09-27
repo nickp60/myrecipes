@@ -1,0 +1,73 @@
+{% set name = "riboSeed" %}
+{% set version = "0.4.19" %}
+{% set hash_type = "sha256" %}
+{% set hash_value = "682201c004c035fd148950f64a3bbf87008fbf4dc053529002c43a225399a3fe" %}
+package:
+  name: '{{ name|lower }}'
+  version: '{{ version }}'
+
+source:
+  fn: '{{ name }}-{{ version }}.tar.gz'
+  # url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://test-files.pythonhosted.org/packages/56/67/d2b729058a31bdde5902a34861b0130ccb082178d1cda2130ea2291d55e5/riboSeed-0.4.19.tar.gz
+  # '{{ hash_type }}': '{{ hash_value }}'
+
+build:
+  number: 0
+  skip: True  # [win]
+  skip: True  # [py2k]
+  skip: True  # [py34]
+  script: $PYTHON setup.py install --single-version-externally-managed --record=record.txt
+requirements:
+  build:
+    - python
+    - setuptools
+    - biopython ==1.68
+    - pysam ==0.11.2.2
+    - jenkspy ==0.1.4
+    - pyaml ==17.8.0
+    - pyutilsnrw ==0.1.0
+    - matplotlib ==1.5.3
+    - pandas ==0.20.1
+    - coverage ==4.4.1
+    - numpy ==1.11.3
+    - nose ==1.3.7
+  run:
+    # python reqs
+    - python
+    - biopython ==1.68
+    - jenkspy ==0.1.4
+    - pyaml ==17.8.0
+    - pysam ==0.11.2.2
+    - pyutilsnrw ==0.1.0
+    - matplotlib ==1.5.3
+    - pandas ==0.20.1
+    - coverage ==4.4.1
+    - numpy ==1.11.3
+    - nose ==1.3.7
+    # sys reqs
+    - emboss
+    - barrnap ==0.7
+    - mafft
+    - prank
+    - spades ==3.9.0
+    - bwa ==0.7.8
+    - samtools ==1.4.1
+    - bcftools ==1.5
+
+test:
+  imports:
+    - riboSeed
+
+about:
+  home: https://github.com/nickp60/riboSeed
+  license: MIT License
+  license_family: MIT
+  license_file: 'LICENSE'
+  summary: 'riboSeed: assemble across rDNA regions'
+  description: "Genome assembly polisher to bridge rDNA gaps"
+  dev_url: 'https://github.com/nickp60/riboSeed'
+
+extra:
+  recipe-maintainers:
+    - nickp60
