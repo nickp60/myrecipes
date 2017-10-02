@@ -1,7 +1,7 @@
 {% set name = "riboSeed" %}
-{% set version = "0.4.20" %}
+{% set version = "0.4.26" %}
 {% set hash_type = "sha256" %}
-{% set hash_value = "074879368f873b306e58f6a38f409498accf33decfa301b3ea7706b715b2816c" %}
+{% set hash_value = "94336e80e64f85e13c64bcc593ad94a10ac4387e0ab7de8d9cf41f802cbdd87d" %}
 package:
   name: '{{ name|lower }}'
   version: '{{ version }}'
@@ -9,15 +9,16 @@ package:
 source:
   fn: '{{ name }}-{{ version }}.tar.gz'
   # url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  url: https://test-files.pythonhosted.org/packages/f4/96/3bbe71d6c69448f9b3adb8085dcbc946355b4ba1fdf21229af45a0cb202f/riboSeed-0.4.20.tar.gz
+  url: https://test-files.pythonhosted.org/packages/5f/57/01f728c12b838ea2f070471ef0ab1fd4a22e0623467043a473e4acb85f00/riboSeed-0.4.26.tar.gz
   # '{{ hash_type }}': '{{ hash_value }}'
 
 build:
+  entry_points:
+    - ribo = riboSeed.ribo:main
   number: 0
   skip: True  # [win]
   skip: True  # [py2k]
   skip: True  # [py34]
-  script: $PYTHON setup.py install --single-version-externally-managed --record=record.txt
 requirements:
   build:
     - python
@@ -30,7 +31,6 @@ requirements:
     - matplotlib ==1.5.3
     - pandas ==0.20.1
     - coverage ==4.4.1
-    - numpy ==1.11.3
     - nose ==1.3.7
   run:
     # python reqs
@@ -43,7 +43,6 @@ requirements:
     - matplotlib ==1.5.3
     - pandas ==0.20.1
     - coverage ==4.4.1
-    - numpy ==1.11.3
     - nose ==1.3.7
     # sys reqs
     - emboss
@@ -58,6 +57,11 @@ requirements:
 test:
   imports:
     - riboSeed
+  commands:
+    - ribo
+    - ribo scan -h
+    - ribo snag -h
+    - $PYTHON -m unittest tests.test_conda
 
 about:
   home: https://github.com/nickp60/riboSeed
