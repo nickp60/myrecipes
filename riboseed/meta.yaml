@@ -1,7 +1,7 @@
 {% set name = "riboSeed" %}
-{% set version = "0.4.26" %}
+{% set version = "0.4.35" %}
 {% set hash_type = "sha256" %}
-{% set hash_value = "94336e80e64f85e13c64bcc593ad94a10ac4387e0ab7de8d9cf41f802cbdd87d" %}
+{% set hash_value = "d2c6556dafa261ecf628e99e1419cd3675ee95663e56c4c851d14bdc5d22d752" %}
 package:
   name: '{{ name|lower }}'
   version: '{{ version }}'
@@ -9,7 +9,7 @@ package:
 source:
   fn: '{{ name }}-{{ version }}.tar.gz'
   # url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  url: https://test-files.pythonhosted.org/packages/5f/57/01f728c12b838ea2f070471ef0ab1fd4a22e0623467043a473e4acb85f00/riboSeed-0.4.26.tar.gz
+  url: https://test-files.pythonhosted.org/packages/f8/82/0a9a127ff88ac945ab14a4b33e234d3d7af040cd9f2929f2a7f6fe1b3ccf/riboSeed-0.4.35.tar.gz
   # '{{ hash_type }}': '{{ hash_value }}'
 
 build:

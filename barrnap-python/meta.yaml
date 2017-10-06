@@ -1,0 +1,40 @@
+{% set name = "barrnap" %}
+{% set version = "0.0.5" %}
+{% set hash_type = "sha256" %}
+{% set hash_value = "acac783c1f93e8e9585017be9e128f7f95d8ae77a9ed3b3656fa53d5043e0e21" %}
+
+package:
+  name: 'barrnap-python'
+  version: '{{ version }}'
+
+source:
+  fn: '{{ name }}-{{ version }}.tar.gz'
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  '{{ hash_type }}': '{{ hash_value }}'
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - python
+    - barrnap
+  run:
+    - python
+    - hmmer >=3.0
+test:
+  commands:
+    - barrnap.py -h
+    - barrnap.py --version
+
+about:
+  home: https://github.com/tseemann/barrnap
+  license: GPLv3
+  license_file: LICENSE
+  summary: 'python package for barrnap '
+  description: "Find 5S, 16S and 23S ribosomal RNA genes in bacterial contigs"
+  dev_url: 'https://github.com/nickp60/barrnap'
+
+extra:
+  recipe-maintainers:
+    - nickp60
