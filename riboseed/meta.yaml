@@ -1,21 +1,21 @@
 {% set name = "riboSeed" %}
 {% set version = "0.4.35" %}
 {% set hash_type = "sha256" %}
-{% set hash_value = "d2c6556dafa261ecf628e99e1419cd3675ee95663e56c4c851d14bdc5d22d752" %}
+{% set hash_value = "9e0233f51babb3c181f1de4afaef34f11dc1d319f2177516f1194654998caa5b" %}
 package:
   name: '{{ name|lower }}'
   version: '{{ version }}'
 
 source:
   fn: '{{ name }}-{{ version }}.tar.gz'
-  # url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  url: https://test-files.pythonhosted.org/packages/f8/82/0a9a127ff88ac945ab14a4b33e234d3d7af040cd9f2929f2a7f6fe1b3ccf/riboSeed-0.4.35.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  # url: https://test-files.pythonhosted.org/packages/f8/82/0a9a127ff88ac945ab14a4b33e234d3d7af040cd9f2929f2a7f6fe1b3ccf/riboSeed-0.4.35.tar.gz
   # '{{ hash_type }}': '{{ hash_value }}'
 
 build:
   entry_points:
     - ribo = riboSeed.ribo:main
-  number: 0
+  number: 1
   skip: True  # [win]
   skip: True  # [py2k]
   skip: True  # [py34]
@@ -59,6 +59,7 @@ test:
     - riboSeed
   commands:
     - ribo
+    - ribo run -h
     - ribo scan -h
     - ribo snag -h
     - $PYTHON -m unittest tests.test_conda
