@@ -1,0 +1,43 @@
+{% set name = "dbgwas" %}
+{% set version = "0.0.1" %}
+{% set hash_type = "sha256" %}
+{% set hash_value = "cf299e5bcf53bd4da1c2a4c699efea3d21b5477c190a6d5bca019c7b504569c0" %}
+
+package:
+  name: '{{ name }}'
+  version: '{{ version }}'
+
+source:
+  fn: DBGWAS-0.5.2-Linux-precompiled.tar.gz
+  path: /home/nicholas/Downloads/DBGWAS-0.5.2-Linux-precompiled.tar.gz
+  url: 'https://www.dropbox.com/s/gf6n4ibcakcyo5k/DBGWAS-0.5.2-Linux-precompiled.tar.gz?dl=1'
+  '{{ hash_type }}': '{{ hash_value }}'
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - r-base
+    - r-ape
+    - r-phangorn
+  run:
+    - r-base
+    - r-ape
+    - r-phangorn
+# test:
+#   commands:
+#     - barrnap.py -h
+#     - barrnap.py --version
+
+about:
+  home: https://gitlab.com/leoisl/dbgwas
+  license: Affero GPL
+  license_file: LICENSE
+  summary: 'DBGWAS'
+  description: "DBGwas"
+  dev_url: 'https://gitlab.com/leoisl/dbgwas'
+
+extra:
+  recipe-maintainers:
+    - nickp60
