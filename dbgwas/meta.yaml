@@ -9,26 +9,28 @@ package:
 
 source:
   fn: DBGWAS-0.5.2-Linux-precompiled.tar.gz
-  path: /home/nicholas/Downloads/DBGWAS-0.5.2-Linux-precompiled.tar.gz
+#  path: /home/nicholas/Downloads/DBGWAS-0.5.2-Linux-precompiled.tar.gz
   url: 'https://www.dropbox.com/s/gf6n4ibcakcyo5k/DBGWAS-0.5.2-Linux-precompiled.tar.gz?dl=1'
   '{{ hash_type }}': '{{ hash_value }}'
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:
-    - r-base
-    - r-ape
+    - ncurses
+    - libiconv
     - r-phangorn
+    - r-ape
   run:
-    - r-base
     - r-ape
     - r-phangorn
-# test:
-#   commands:
-#     - barrnap.py -h
-#     - barrnap.py --version
+# regrettably, these commands return 1
+test:
+  commands:
+    - DBGWAS -strains $PREFIX/test_data/strains
+    # - DBGWAS -version
+    # - DBGWAS -help  # sadly this returns 1
 
 about:
   home: https://gitlab.com/leoisl/dbgwas
